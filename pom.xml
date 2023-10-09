@@ -54,6 +54,11 @@
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>6.0.0</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>tomcat-app</finalName>
@@ -61,6 +66,15 @@
       <resource>
         <directory>src/main/webapp</directory>
         <targetPath>META-INF/resources</targetPath>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+          <include>**/*.tld</include>
+        </includes>
+        <filtering>false</filtering>
       </resource>
     </resources>
     <plugins>

@@ -18,10 +18,19 @@ import org.apache.catalina.startup.ContextConfig;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.catalina.webresources.DirResourceSet;
 import org.apache.catalina.webresources.StandardRoot;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.mycompany.service.User;
+import com.mycompany.service.UserService;
 
 public class Main {
   public static void main(String[] args) throws Exception {
-    Main.startServer();
+    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
+    UserService userService = context.getBean(UserService.class);
+    User user = userService.login("bob@163.com", "123");
+    System.out.println(user.getName() + " login successfully!");
+    context.close();
   }
 
   static void startServer() throws Exception {
