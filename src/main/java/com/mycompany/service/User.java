@@ -28,4 +28,8 @@ public class User {
   public long getId() {
     return id;
   }
+
+  public String toString() {
+    return String.format("id: %d\t name: %s\t email: %s \t", getId(), getName(), getEmail());
+  }
 }

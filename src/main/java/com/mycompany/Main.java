@@ -5,6 +5,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.jar.JarEntry;
@@ -28,6 +29,10 @@ public class Main {
   public static void main(String[] args) throws Exception {
     ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
     UserService userService = context.getBean(UserService.class);
+    ArrayList<User> users = userService.queryAll();
+    for (User user : users) {
+      System.out.println(user.toString());
+    }
     User user = userService.login("bob@163.com", "123");
     System.out.println(user.getName() + " login successfully!");
     context.close();
